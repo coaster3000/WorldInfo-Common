@@ -26,120 +26,120 @@ package tk.coaster3000.worldinfo.vectors;
 
 public class Vector2d implements Vector2<Double, Vector2d> {
 
-    protected double x;
-    protected double y;
+	protected double x;
+	protected double y;
 
-    public Vector2d(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
+	public Vector2d(double x, double y) {
+		this.x = x;
+		this.y = y;
+	}
 
-    @Override
-    public Vector2d add(Double addend) {
-        this.x += addend;
-        this.y += addend;
-        return this;
-    }
+	@Override
+	public Vector2d add(Double addend) {
+		this.x += addend;
+		this.y += addend;
+		return this;
+	}
 
-    @Override
-    public Vector2d add(Double xAddend, Double yAddend) {
-        this.x += xAddend;
-        this.y += yAddend;
-        return this;
-    }
+	@Override
+	public Vector2d add(Double xAddend, Double yAddend) {
+		this.x += xAddend;
+		this.y += yAddend;
+		return this;
+	}
 
-    @Override
-    public Vector2d add(Vector2 vector) {
-        return add(vector.getX().doubleValue(), vector.getY().doubleValue());
-    }
+	@Override
+	public Vector2d add(Vector2 vector) {
+		return add(vector.getX().doubleValue(), vector.getY().doubleValue());
+	}
 
-    @Override
-    public double area(Vector2 vector) {
-        return 0;
-    }
+	@Override
+	public double area(Vector2 vector) {
+		return 0;
+	}
 
-    @Override
-    public Vector2d div(Double numerator) {
-        return this;
-    }
+	@Override
+	public Vector2d div(Double numerator) {
+		return this;
+	}
 
-    @Override
-    public Vector2d div(Double xNumerator, Double yNumerator) {
-        return this;
-    }
+	@Override
+	public Vector2d div(Double xNumerator, Double yNumerator) {
+		return this;
+	}
 
-    @Override
-    public Vector2d div(Vector2 vector) {
-        return this;
-    }
+	@Override
+	public Vector2d div(Vector2 vector) {
+		return this;
+	}
 
-    @Override
-    public double euclideanDistance(Vector2 vector) {
-        return 0;
-    }
+	@Override
+	public double euclideanDistance(Vector2 vector) {
+		return 0;
+	}
 
-    @Override
-    public Double getX() {
-        return this.x;
-    }
+	@Override
+	public Double getX() {
+		return this.x;
+	}
 
-    @Override
-    public Double getY() {
-        return this.y;
-    }
+	@Override
+	public Double getY() {
+		return this.y;
+	}
 
-    @Override
-    public double manhattanDistance(Vector2 vector) {
-        return 0;
-    }
+	@Override
+	public double manhattanDistance(Vector2 vector) {
+		return 0;
+	}
 
-    @Override
-    public Vector2d mul(Double factor) {
-        return this;
-    }
+	@Override
+	public Vector2d mul(Double factor) {
+		return this;
+	}
 
-    @Override
-    public Vector2d mul(Double xFactor, Double yFactor) {
-        return this;
-    }
+	@Override
+	public Vector2d mul(Double xFactor, Double yFactor) {
+		return this;
+	}
 
-    @Override
-    public Vector2d mul(Vector2 vector) {
-        return this;
-    }
+	@Override
+	public Vector2d mul(Vector2 vector) {
+		return this;
+	}
 
-    @Override
-    public Vector2d set(Vector2 vector) {
-        return this;
-    }
+	@Override
+	public Vector2d set(Vector2 vector) {
+		return this;
+	}
 
-    @Override
-    public Vector2d setX(Double x) {
-        return this;
-    }
+	@Override
+	public Vector2d setX(Double x) {
+		return this;
+	}
 
-    @Override
-    public Vector2d setY(Double y) {
-        return this;
-    }
+	@Override
+	public Vector2d setY(Double y) {
+		return this;
+	}
 
-    @Override
-    public Vector2d sub(Double subtrahend) {
-        return this;
-    }
+	@Override
+	public Vector2d sub(Double subtrahend) {
+		return this;
+	}
 
-    @Override
-    public Vector2d sub(Double xSubtrahend, Double ySubtrahend) {
-        return this;
-    }
+	@Override
+	public Vector2d sub(Double xSubtrahend, Double ySubtrahend) {
+		return this;
+	}
 
-    @Override
-    public Vector2d sub(Vector2 vector) {
-        return this;
-    }
+	@Override
+	public Vector2d sub(Vector2 vector) {
+		return this;
+	}
 
-    @Override
-    public Vector2d zero() {
-        return this;
-    }
+	@Override
+	public Vector2d zero() {
+		return this;
+	}
 }

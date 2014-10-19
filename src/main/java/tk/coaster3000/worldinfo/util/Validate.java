@@ -31,38 +31,38 @@ public class Validate {
 		notNull(object, "Object may not be null.");
 	}
 
-    public static void notNullOrEmpty(Object object) {
-        notNull(object);
-    }
+	public static void notNullOrEmpty(Object object) {
+		notNull(object);
+	}
 
 	public static void notNull(Object object, String message) {
 		if (object == null) throw new IllegalArgumentException(message);
 	}
 
-    public static void notNullOrEmpty(Object[] objects) {
-        notNullOrEmpty(objects, "Object must not be null or empty.");
-    }
+	public static void notNullOrEmpty(Object[] objects) {
+		notNullOrEmpty(objects, "Object must not be null or empty.");
+	}
 
-    public static void notNullOrEmpty(Object[] objects, String message) {
-        notNull(objects);
-        if (objects.length == 0) throw new IllegalArgumentException(message);
-    }
+	public static void notNullOrEmpty(Object[] objects, String message) {
+		notNull(objects);
+		if (objects.length == 0) throw new IllegalArgumentException(message);
+	}
 
-    public static void notNullOrEmpty(Collection<?> objects) {
-        notNullOrEmpty(objects, "Collection may not be null or empty!");
-    }
+	public static void notNullOrEmpty(Collection<?> objects) {
+		notNullOrEmpty(objects, "Collection may not be null or empty!");
+	}
 
-    public static void notNullOrEmpty(Collection<?> objects, String message) {
-        notNull(objects);
-        if (objects.size() == 0) throw new IllegalArgumentException(message);
-    }
+	public static void notNullOrEmpty(Collection<?> objects, String message) {
+		notNull(objects);
+		if (objects.size() == 0) throw new IllegalArgumentException(message);
+	}
 
-    public static void notNullOrEmpty(String object) {
-        notNullOrEmpty(object, "String may not be null or empty!");
-    }
+	public static void notNullOrEmpty(String object) {
+		notNullOrEmpty(object, "String may not be null or empty!");
+	}
 
-    public static void notNullOrEmpty(String object, String message) {
-        notNull(object);
-        if (object.length() == 0) throw new IllegalArgumentException(message);
-    }
+	public static void notNullOrEmpty(String object, String message) {
+		notNull(object);
+		if (object.length() == 0) throw new IllegalArgumentException(message);
+	}
 }
