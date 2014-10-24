@@ -33,7 +33,19 @@ public abstract class CommonWorld {
 
 	protected UUID uid;
 	protected String name;
-	protected String customName;	  /**	  * Only implement if needed.	  */	 protected CommonWorld() {	 }	  public CommonWorld(UUID uid, String name, String customName) {		 this.uid = uid;		 this.name = name;		 this.customName = customName;	 }
+	protected String customName;
+
+	/**
+	 * Only implement if needed.
+	 */
+	protected CommonWorld() {
+	}
+
+	public CommonWorld(UUID uid, String name, String customName) {
+		this.uid = uid;
+		this.name = name;
+		this.customName = customName;
+	}
 
 	public final UUID getUID() {
 		if (uid == null) generateUID();
@@ -44,9 +56,12 @@ public abstract class CommonWorld {
 		return name;
 	}
 
-	protected void setName(String name) {		 Validate.notNullOrEmpty(name);
+	protected void setName(String name) {
+		Validate.notNullOrEmpty(name);
 		this.name = name;
-	}	  public abstract File getWorldFolder();
+	}
+
+	public abstract File getWorldFolder();
 
 	public final String getCustomName() {
 		return customName;

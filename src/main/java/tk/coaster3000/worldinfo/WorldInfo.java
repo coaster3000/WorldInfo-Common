@@ -30,7 +30,7 @@ import tk.coaster3000.worldinfo.data.CommonPlayer;
 import tk.coaster3000.worldinfo.data.CommonWorld;
 import tk.coaster3000.worldinfo.util.Validate;
 
-public abstract class WorldInfo<T1, T2, W> {
+public abstract class WorldInfo<PlayerT, PacketT, WorldT> {
 	protected Settings settings;
 
 	public final void loadSettings() {
@@ -38,14 +38,18 @@ public abstract class WorldInfo<T1, T2, W> {
 		settings.load();
 	}
 
+	public Settings getSettings() {
+		return this.settings;
+	}
+
 	public final void saveSettings() {
 		Validate.notNull(settings);
 		settings.save();
 	}
 
-	public abstract CommonPacket wrapPacket(T2 packet);
+	public abstract CommonPacket wrapPacket(PacketT packet);
 
-	public abstract CommonPlayer wrapPlayer(T1 player);
+	public abstract CommonPlayer<? extends CommonWorld> wrapPlayer(PlayerT player);
 
-	public abstract CommonWorld wrapWorld(W world);
+	public abstract CommonWorld wrapWorld(WorldT world);
 }
