@@ -22,38 +22,54 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package tk.coaster3000.worldinfo.data;
+package tk.coaster3000.worldinfo.common.data;
 
-public class CommonPacket {
-	protected String channel;
-	protected byte id;
-	protected byte[] data;
+import tk.coaster3000.worldinfo.util.Validate;
+
+import java.io.File;
+import java.util.UUID;
+
+public abstract class CommonWorld {
+
+	protected UUID uid;
+	protected String name;
+	protected String customName;
 
 	/**
-	 * Internal use only please...
+	 * Only implement if needed.
 	 */
-	protected CommonPacket() {
+	protected CommonWorld() {
 	}
 
-	public CommonPacket(String channel, byte id, byte[] data) {
-		this.channel = channel;
-		this.id = id;
-		this.data = data;
+	public CommonWorld(UUID uid, String name, String customName) {
+		this.uid = uid;
+		this.name = name;
+		this.customName = customName;
 	}
 
-	public String getChannel() {
-		return channel;
+	public final UUID getUID() {
+		if (uid == null) generateUID();
+		return uid;
 	}
 
-	public byte getId() {
-		return id;
+	public final String getName() {
+		return name;
 	}
 
-	public byte[] getData() {
-		return data;
+	protected void setName(String name) {
+		Validate.notNullOrEmpty(name);
+		this.name = name;
 	}
 
-	public int getDataLength() {
-		return data.length;
+	public abstract File getWorldFolder();
+
+	public final String getCustomName() {
+		return customName;
 	}
+
+	public final void setCustomName(String name) {
+		this.customName = name;
+	}
+
+	protected abstract void generateUID();
 }

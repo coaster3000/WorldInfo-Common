@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package tk.coaster3000.worldinfo.config;
+package tk.coaster3000.worldinfo.common.config;
 
 public enum Mode {
 	UUID, File, Name

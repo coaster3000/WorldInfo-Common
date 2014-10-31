@@ -24,10 +24,10 @@
  */
 package tk.coaster3000.worldinfo;
 
-import tk.coaster3000.worldinfo.config.Settings;
-import tk.coaster3000.worldinfo.data.CommonPacket;
-import tk.coaster3000.worldinfo.data.CommonPlayer;
-import tk.coaster3000.worldinfo.data.CommonWorld;
+import tk.coaster3000.worldinfo.common.config.Settings;
+import tk.coaster3000.worldinfo.common.data.CommonPacket;
+import tk.coaster3000.worldinfo.common.data.CommonPlayer;
+import tk.coaster3000.worldinfo.common.data.CommonWorld;
 import tk.coaster3000.worldinfo.util.Validate;
 
 public abstract class WorldInfo<PlayerT, PacketT, WorldT> {

@@ -22,22 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package tk.coaster3000.worldinfo.data;
+package tk.coaster3000.worldinfo.common.data;
 
-import java.util.Collection;
+public class CommonPacket {
+	protected String channel;
+	protected byte id;
+	protected byte[] data;
 
-public abstract class CommonPlayer<T extends CommonWorld> {
-	public abstract void sendMessage(String message);
-
-	public abstract void sendPacket(CommonPacket packet);
-
-	public abstract T getWorld();
-
-	public final void sendMessage(String... messages) {
-		for (String msg : messages) sendMessage(msg);
+	/**
+	 * Internal use only please...
+	 */
+	protected CommonPacket() {
 	}
 
-	public final void sendMessages(Collection<String> messages) {
-		for (String msg : messages) sendMessage(msg);
+	public CommonPacket(String channel, byte id, byte[] data) {
+		this.channel = channel;
+		this.id = id;
+		this.data = data;
+	}
+
+	public String getChannel() {
+		return channel;
+	}
+
+	public byte getId() {
+		return id;
+	}
+
+	public byte[] getData() {
+		return data;
+	}
+
+	public int getDataLength() {
+		return data.length;
 	}
 }
