@@ -28,23 +28,16 @@ import tk.coaster3000.worldinfo.common.config.Settings;
 import tk.coaster3000.worldinfo.common.data.CommonPacket;
 import tk.coaster3000.worldinfo.common.data.CommonPlayer;
 import tk.coaster3000.worldinfo.common.data.CommonWorld;
-import tk.coaster3000.worldinfo.util.Validate;
 
 public abstract class WorldInfo<PlayerT, PacketT, WorldT> {
-	protected Settings settings;
-
 	public final void loadSettings() {
-		Validate.notNull(settings);
-		settings.load();
+		getSettings().load();
 	}
 
-	public Settings getSettings() {
-		return this.settings;
-	}
+	public abstract Settings getSettings();
 
 	public final void saveSettings() {
-		Validate.notNull(settings);
-		settings.save();
+		getSettings().save();
 	}
 
 	public abstract CommonPacket wrapPacket(PacketT packet);
