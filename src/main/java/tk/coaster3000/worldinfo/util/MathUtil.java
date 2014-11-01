@@ -36,23 +36,23 @@ public class MathUtil {
 		return length * width;
 	}
 
-	public static double euclideanDistance(Vector2 vector, Vector2 vector2) {
+	public static double euclideanDistance(Vector2<?, ?> vector, Vector2<?, ?> vector2) {
 		return java.lang.Math.sqrt(java.lang.Math.pow(vector.getX().doubleValue() - vector2.getX().doubleValue(), 2)
 				+ java.lang.Math.pow(vector.getY().doubleValue() - vector2.getY().doubleValue(), 2));
 	}
 
-	public static double euclideanDistance(Vector3 vector, Vector3 vector2) {
+	public static double euclideanDistance(Vector3<?, ?> vector, Vector3<?, ?> vector2) {
 		return java.lang.Math.sqrt(java.lang.Math.pow(vector.getX().doubleValue() - vector2.getX().doubleValue(), 2)
 				+ java.lang.Math.pow(vector.getY().doubleValue() - vector2.getY().doubleValue(), 2)
 				+ java.lang.Math.pow(vector.getZ().doubleValue() - vector2.getZ().doubleValue(), 2));
 	}
 
-	public static double manhattanDistance(Vector2 vector, Vector2 vector2) {
+	public static double manhattanDistance(Vector2<?, ?> vector, Vector2<?, ?> vector2) {
 		return toPositive(vector.getX().doubleValue() - vector2.getX().doubleValue()) + toPositive(
 				vector.getY().doubleValue() - vector2.getY().doubleValue());
 	}
 
-	public static double manhattanDistance(Vector3 vector, Vector3 vector2) {
+	public static double manhattanDistance(Vector3<?, ?> vector, Vector3<?, ?> vector2) {
 		return toPositive(vector.getX().doubleValue() - vector2.getX().doubleValue()) + toPositive(
 				vector.getY().doubleValue() - vector2.getY().doubleValue()) + toPositive(
 				vector.getZ().doubleValue() - vector2.getZ().doubleValue());

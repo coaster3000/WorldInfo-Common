@@ -49,12 +49,12 @@ public class Vector2d implements Vector2<Double, Vector2d> {
 	}
 
 	@Override
-	public Vector2d add(Vector2 vector) {
+	public Vector2d add(Vector2<?, ?> vector) {
 		return add(vector.getX().doubleValue(), vector.getY().doubleValue());
 	}
 
 	@Override
-	public double area(Vector2 vector) {
+	public double area(Vector2<?, ?> vector) {
 		return 0;
 	}
 
@@ -69,12 +69,12 @@ public class Vector2d implements Vector2<Double, Vector2d> {
 	}
 
 	@Override
-	public Vector2d div(Vector2 vector) {
+	public Vector2d div(Vector2<?, ?> vector) {
 		return this;
 	}
 
 	@Override
-	public double euclideanDistance(Vector2 vector) {
+	public double euclideanDistance(Vector2<?, ?> vector) {
 		return 0;
 	}
 
@@ -89,7 +89,7 @@ public class Vector2d implements Vector2<Double, Vector2d> {
 	}
 
 	@Override
-	public double manhattanDistance(Vector2 vector) {
+	public double manhattanDistance(Vector2<?, ?> vector) {
 		return 0;
 	}
 
@@ -104,12 +104,12 @@ public class Vector2d implements Vector2<Double, Vector2d> {
 	}
 
 	@Override
-	public Vector2d mul(Vector2 vector) {
+	public Vector2d mul(Vector2<?, ?> vector) {
 		return this;
 	}
 
 	@Override
-	public Vector2d set(Vector2 vector) {
+	public Vector2d set(Vector2<?, ?> vector) {
 		return this;
 	}
 
@@ -134,7 +134,7 @@ public class Vector2d implements Vector2<Double, Vector2d> {
 	}
 
 	@Override
-	public Vector2d sub(Vector2 vector) {
+	public Vector2d sub(Vector2<?, ?> vector) {
 		return this;
 	}
 

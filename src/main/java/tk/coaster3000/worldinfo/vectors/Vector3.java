@@ -24,21 +24,21 @@
  */
 package tk.coaster3000.worldinfo.vectors;
 
-public interface Vector3<T extends Number, R extends Vector3> {
+public interface Vector3<T extends Number, R extends Vector3<T, R>> {
 
 	public R add(T addition);
 
 	public R add(T x, T y, T z);
 
-	public R add(Vector3 vector);
+	public R add(Vector3<? , ?> vector);
 
 	public R div(T numerator);
 
 	public R div(T x, T y, T z);
 
-	public R div(Vector3 vector);
+	public R div(Vector3<? , ?> vector);
 
-	public double euclideanDistance(Vector3 vector);
+	public double euclideanDistance(Vector3<? , ?> vector);
 
 	public T getX();
 
@@ -46,15 +46,15 @@ public interface Vector3<T extends Number, R extends Vector3> {
 
 	public T getZ();
 
-	public double manhattanDistance(Vector3 vector);
+	public double manhattanDistance(Vector3<? , ?> vector);
 
 	public R mul(T factor);
 
 	public R mul(T x, T y, T z);
 
-	public R mul(Vector3 vector);
+	public R mul(Vector3<? , ?> vector);
 
-	public R set(Vector3 values);
+	public R set(Vector3<? , ?> values);
 
 	public R setX(T x);
 
@@ -66,9 +66,9 @@ public interface Vector3<T extends Number, R extends Vector3> {
 
 	public R sub(T x, T y, T z);
 
-	public R sub(Vector3 vector);
+	public R sub(Vector3<? , ?> vector);
 
-	public double vol(Vector3 vector);
+	public double vol(Vector3<? , ?> vector);
 
 	public R zero();
 }
