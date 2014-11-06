@@ -46,6 +46,7 @@ public interface IMultiMap<M extends Map<String, Object>> {
 	IMultiMap<M> createNode(String path);
 
 	boolean set(String path, Object value);
+	boolean remove(String path);
 
 	Collection<String> getKeys(boolean recursive);
 	Collection<String> getKeys();

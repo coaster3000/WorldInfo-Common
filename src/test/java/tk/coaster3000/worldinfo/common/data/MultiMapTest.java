@@ -30,6 +30,7 @@ import tk.coaster3000.worldinfo.util.StringUtil;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Set;
 
 public class MultiMapTest {
 	static Pair<String, Integer> testInt1;
@@ -267,6 +268,28 @@ public class MultiMapTest {
 		assert keys.contains(testString1.first) : String.format(failMsg, "to", testString1.first, StringUtil.join("\n", keys));
 		assert keys.contains(testSubInt1.first) : String.format(failMsg, "to", testSubInt1.first, StringUtil.join("\n", keys));
 		assert keys.contains(testSubString1.first) : String.format(failMsg, "to", testSubString1.first, StringUtil.join("\n", keys));
+	}
+
+	@Test(description = "Ensures that objects can be removed from multimap.",
+			priority = 3,
+			dependsOnGroups = {"keys"}
+	)
+	public void testRemoveRaw() {
+		assert data.remove(testRaw1.first);
+		assert !data.getData().containsKey(testRaw1.first) :
+				String.format("Data was not removed successfully. The node '%s' was not removed!", testRaw1.first);
+	}
+
+	@Test(description = "Ensures all data was erased!",
+			dependsOnGroups = {"keys"},
+			dependsOnMethods = {"testRemoveRaw"}
+	)
+	public void testClear() {
+		data.clear();
+
+		Set<String> keys = data.getKeys(true);
+		String failMsg = "There should be no data left after a clear!. It contains the following: \n\n %s \n\n";
+		assert keys.isEmpty() : String.format(failMsg, StringUtil.join("\n", keys));
 	}
 
 	private static class Pair<T, T2> {
