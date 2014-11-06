@@ -108,6 +108,7 @@ license {
 }
 
 checkstyle {
+    toolVersion = "6.0"
     configProperties = [
             "name" : project.name,
             "organization" : project.developer,
