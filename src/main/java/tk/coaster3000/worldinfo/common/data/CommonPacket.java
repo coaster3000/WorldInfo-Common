@@ -38,7 +38,7 @@ public class CommonPacket {
 	public CommonPacket(String channel, byte id, byte[] data) {
 		this.channel = channel;
 		this.id = id;
-		this.data = data;
+		this.data = data.clone();
 	}
 
 	public String getChannel() {
@@ -50,7 +50,7 @@ public class CommonPacket {
 	}
 
 	public byte[] getData() {
-		return data;
+		return data.clone();
 	}
 
 	public int getDataLength() {
