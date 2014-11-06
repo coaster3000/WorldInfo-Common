@@ -24,7 +24,7 @@
  */
 package tk.coaster3000.worldinfo;
 
-import tk.coaster3000.worldinfo.common.config.Settings;
+import tk.coaster3000.worldinfo.common.config.SettingsProvider;
 import tk.coaster3000.worldinfo.common.data.CommonPacket;
 import tk.coaster3000.worldinfo.common.data.CommonPlayer;
 import tk.coaster3000.worldinfo.common.data.CommonWorld;
@@ -34,7 +34,7 @@ public abstract class WorldInfo<PlayerT, PacketT, WorldT> {
 		getSettings().load();
 	}
 
-	public abstract Settings getSettings();
+	public abstract SettingsProvider getSettings();
 
 	public final void saveSettings() {
 		getSettings().save();

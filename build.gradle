@@ -57,7 +57,7 @@ group= "tk.coaster3000" // http://maven.apache.org/guides/mini/guide-naming-conv
 archivesBaseName = "WorldInfo-Common"
 
 dependencies {
-    testCompile 'junit:junit:4.11'
+    testCompile 'org.testng:testng:6.1.1'
 }
 
 // Define variables
@@ -78,6 +78,9 @@ processResources {
     from 'LICENSE.txt'
 }
 
+test {
+    useTestNG()
+}
 
 jar {
     // JAR manifest configuration
@@ -105,6 +108,7 @@ license {
 }
 
 checkstyle {
+    toolVersion = "6.0"
     configProperties = [
             "name" : project.name,
             "organization" : project.developer,

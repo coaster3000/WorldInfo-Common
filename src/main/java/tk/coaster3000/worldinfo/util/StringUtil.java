@@ -24,7 +24,13 @@
  */
 package tk.coaster3000.worldinfo.util;
 
+import java.util.Collection;
+
 public class StringUtil {
+	public static String join(String delimiter, Collection<String> strings) {
+		return join(delimiter, strings.toArray(new String[strings.size()]));
+	}
+
 	public static String join(String delimiter, String... strings) {
 		Validate.notNullOrEmpty(strings, "Can't join together null data!");
 

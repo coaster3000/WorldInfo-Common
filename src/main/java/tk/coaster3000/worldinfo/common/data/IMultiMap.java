@@ -24,36 +24,37 @@
  */
 package tk.coaster3000.worldinfo.common.data;
 
-public class CommonPacket {
-	protected String channel;
-	protected byte id;
-	protected byte[] data;
+import java.util.Collection;
+import java.util.Map;
 
-	/**
-	 * Internal use only please...
-	 */
-	protected CommonPacket() {
-	}
+public interface IMultiMap<M extends Map<String, Object>> {
 
-	public CommonPacket(String channel, byte id, byte[] data) {
-		this.channel = channel;
-		this.id = id;
-		this.data = data.clone();
-	}
+	IMultiMap<M> getRoot();
+	IMultiMap<M> getParent();
 
-	public String getChannel() {
-		return channel;
-	}
+	String getPath();
+	String getName();
 
-	public byte getId() {
-		return id;
-	}
+	boolean isNode(String path);
+	boolean contains(String path);
 
-	public byte[] getData() {
-		return data.clone();
-	}
+	Object get(String path);
+	<T> T get(String path, Class<T> type);
+	<T> T get(String path, T defValue);
 
-	public int getDataLength() {
-		return data.length;
-	}
+	IMultiMap<M> getNode(String path);
+	IMultiMap<M> createNode(String path);
+
+	boolean set(String path, Object value);
+
+	Collection<String> getKeys(boolean recursive);
+	Collection<String> getKeys();
+
+	Collection<String> getNodeKeys();
+	Collection<String> getValueKeys();
+
+	Map<String, Object> getData();
+	Map<String, Object> getFlatData();
+
+	void clear();
 }

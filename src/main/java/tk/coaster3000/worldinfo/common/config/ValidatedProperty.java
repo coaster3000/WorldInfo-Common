@@ -22,38 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package tk.coaster3000.worldinfo.common.data;
+package tk.coaster3000.worldinfo.common.config;
 
-public class CommonPacket {
-	protected String channel;
-	protected byte id;
-	protected byte[] data;
-
-	/**
-	 * Internal use only please...
-	 */
-	protected CommonPacket() {
-	}
-
-	public CommonPacket(String channel, byte id, byte[] data) {
-		this.channel = channel;
-		this.id = id;
-		this.data = data.clone();
-	}
-
-	public String getChannel() {
-		return channel;
-	}
-
-	public byte getId() {
-		return id;
-	}
-
-	public byte[] getData() {
-		return data.clone();
-	}
-
-	public int getDataLength() {
-		return data.length;
-	}
+public interface ValidatedProperty<T> extends Property<T> {
+	boolean isValid(T value);
 }
