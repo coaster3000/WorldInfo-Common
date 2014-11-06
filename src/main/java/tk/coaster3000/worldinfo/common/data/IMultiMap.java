@@ -57,5 +57,4 @@ public interface IMultiMap<M extends Map<String, Object>> {
 	Map<String, Object> getFlatData();
 
 	void clear();
-	void deepClear();
 }
