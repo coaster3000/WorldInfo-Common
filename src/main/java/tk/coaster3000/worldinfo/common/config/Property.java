@@ -27,8 +27,9 @@ package tk.coaster3000.worldinfo.common.config;
 public interface Property<T> {
 
 	Class<T> getValueType();
-	T getValue();
+	T getValue(SettingsProvider provider);
+	T getValue(SettingsProvider provider, T defValue);
 	String getKey();
 
-	String getComment();
+	String getComment(SettingsProvider provider);
 }
