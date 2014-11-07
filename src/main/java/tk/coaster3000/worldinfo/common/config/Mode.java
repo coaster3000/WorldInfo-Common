@@ -24,6 +24,43 @@
  */
 package tk.coaster3000.worldinfo.common.config;
 
+import tk.coaster3000.worldinfo.util.PropertyTypes;
+
 public enum Mode {
-	UUID, File, Name
+	UUID, File, Name;
+
+	public static class ModeProperty extends PropertyTypes.StringProperty {
+		public ModeProperty(String key) {
+			super(key);
+		}
+
+		public Mode getModeValue() {
+			try {
+				return Mode.valueOf(getValue());
+			} catch (IllegalArgumentException ignored) {
+				return null;
+			}
+		}
+
+		public Mode getModeValue(SettingsProvider provider) {
+			try {
+				return Mode.valueOf(getValue(provider));
+			} catch (IllegalArgumentException ignored) {
+				return null;
+			}
+		}
+
+		public Mode getModeValue(SettingsProvider provider, Mode defValue) {
+			return Mode.valueOf(getValue(provider, defValue.name()));
+		}
+
+		public boolean setValue(Mode mode) {
+			return setValue(mode.name());
+		}
+
+		public boolean setValue(SettingsProvider provider, Mode mode) {
+			return setValue(provider, mode.name());
+		}
+
+	}
 }
