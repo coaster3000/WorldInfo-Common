@@ -25,6 +25,7 @@
 package tk.coaster3000.worldinfo.common.config;
 
 import tk.coaster3000.worldinfo.common.data.MultiMap;
+import tk.coaster3000.worldinfo.util.PropertyTypes;
 
 import java.util.*;
 
@@ -36,6 +37,34 @@ public abstract class BasicSettings<M extends Map<String, Object>> implements Se
 	public BasicSettings(MultiMap<M> baseMap) {
 		this.data = baseMap;
 		this.properties = new HashSet<Property<?>>();
+
+		Collections.addAll(this.properties,
+				new PropertyTypes.BooleanProperty("enabled.mod") {
+					@Override
+					public Boolean getDefaultValue() {
+						return true;
+					}
+				},
+				new PropertyTypes.BooleanProperty("enabled.packets.uuid") {
+					@Override
+					public Boolean getDefaultValue() {
+						return true;
+					}
+				},
+				new PropertyTypes.BooleanProperty("enabled.packets.worldname") {
+					@Override
+					public Boolean getDefaultValue() {
+						return true;
+					}
+				},
+				new PropertyTypes.BooleanProperty("enabled.packets.file") {
+					@Override
+					public Boolean getDefaultValue() {
+						return true;
+					}
+				},
+				new Mode.ModeProperty("primary.mode")
+		);
 	}
 
 	@Override
