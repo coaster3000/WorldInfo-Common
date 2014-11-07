@@ -24,60 +24,8 @@
  */
 package tk.coaster3000.worldinfo.common.config;
 
-import tk.coaster3000.worldinfo.util.PropertyTypes;
-import tk.coaster3000.worldinfo.util.StringUtil;
-
 import java.util.regex.Pattern;
 
-public enum Mode {
-	UUID, File, Name;
-
-	public static class ModeProperty extends PropertyTypes.StringProperty implements PatternValidatedProperty {
-		public ModeProperty(String key) {
-			super(key);
-		}
-
-		static final Pattern regex;
-
-		static {
-			Mode[] modes = Mode.values();
-			String[] vals = new String[modes.length];
-			for (int i = 0; i < modes.length; i++) vals[i] = modes[i].name();
-
-			regex = Pattern.compile(StringUtil.join("|", vals));
-		}
-
-		public Mode getModeValue() {
-			try {
-				return Mode.valueOf(getValue());
-			} catch (IllegalArgumentException ignored) {
-				return null;
-			}
-		}
-
-		public Mode getModeValue(SettingsProvider provider) {
-			try {
-				return Mode.valueOf(getValue(provider));
-			} catch (IllegalArgumentException ignored) {
-				return null;
-			}
-		}
-
-		public Mode getModeValue(SettingsProvider provider, Mode defValue) {
-			return Mode.valueOf(getValue(provider, defValue.name()));
-		}
-
-		public boolean setValue(Mode mode) {
-			return setValue(mode.name());
-		}
-
-		public boolean setValue(SettingsProvider provider, Mode mode) {
-			return setValue(provider, mode.name());
-		}
-
-		@Override
-		public Pattern getPattern() {
-			return regex;
-		}
-	}
+public interface PatternValidatedProperty extends Property<String> {
+	Pattern getPattern();
 }
