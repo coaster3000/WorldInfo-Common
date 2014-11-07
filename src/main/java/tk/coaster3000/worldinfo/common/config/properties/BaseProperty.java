@@ -28,7 +28,7 @@ import tk.coaster3000.worldinfo.common.config.Property;
 import tk.coaster3000.worldinfo.common.config.SettingsProvider;
 import tk.coaster3000.worldinfo.util.Validate;
 
-public class BaseProperty<T> implements Property<T> {
+public abstract class BaseProperty<T> implements Property<T> {
 
 	private static final String PATH_SEP = ".";
 
@@ -86,21 +86,11 @@ public class BaseProperty<T> implements Property<T> {
 		return getValue(this.provider, defValue);
 	}
 
-	public final String getComment() {
-		return getComment(this.provider);
-	}
-
 	public final String getKey() {
 		return key;
 	}
 
 	public final String getPath() {
 		return path;
-	}
-
-	public String getComment(SettingsProvider provider) {
-		Validate.notNull(provider, "Provider must not be null!");
-		if (provider.supportsComments()) return provider.getPropertyComment(this);
-		return null;
 	}
 }

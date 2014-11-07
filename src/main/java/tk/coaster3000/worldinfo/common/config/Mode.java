@@ -47,6 +47,11 @@ public enum Mode {
 			regex = Pattern.compile(StringUtil.join("|", vals));
 		}
 
+		@Override
+		public String getDefaultValue() {
+			return Mode.UUID.name();
+		}
+
 		public Mode getModeValue() {
 			try {
 				return Mode.valueOf(getValue());
@@ -78,6 +83,11 @@ public enum Mode {
 		@Override
 		public Pattern getPattern() {
 			return regex;
+		}
+
+		@Override
+		public String getComment() {
+			return "A world id mode. It may contain either of the following: " + StringUtil.join(",", getPattern().pattern().split("\\|"));
 		}
 	}
 }

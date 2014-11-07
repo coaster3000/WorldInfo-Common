@@ -36,12 +36,9 @@ public interface SettingsProvider {
 
 	<T> T getProperty(Property<T> property);
 	<T> T getProperty(Property<T> property, T defValue);
-	String getPropertyComment(Property<?> property);
 
-	boolean setPropertyComment(Property<?> property, String comment);
 	<T> boolean setProperty(Property<T> property, T value);
 
-	boolean hasComment(Property<?> property);
 	boolean hasProperty(Property<?> property);
 	boolean addProperty(Property<?> property);
 	boolean removeProperty(Property<?> property);

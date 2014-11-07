@@ -32,5 +32,7 @@ public interface Property<T> {
 	boolean setValue(SettingsProvider provider, T value);
 	String getKey();
 
-	String getComment(SettingsProvider provider);
+	String getComment();
+
+	T getDefaultValue();
 }
