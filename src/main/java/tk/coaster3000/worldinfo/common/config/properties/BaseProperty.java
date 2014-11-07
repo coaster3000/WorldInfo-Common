@@ -48,6 +48,11 @@ public abstract class BaseProperty<T> implements Property<T> {
 		}
 	}
 
+	@Override
+	public String getComment() {
+		return null;
+	}
+
 	public SettingsProvider getProvider() {
 		return provider;
 	}
