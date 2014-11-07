@@ -56,6 +56,14 @@ public class BaseProperty<T> implements Property<T> {
 		this.provider = provider;
 	}
 
+	public final boolean setValue(T value) {
+		return setValue(this.provider, value);
+	}
+
+	public boolean setValue(SettingsProvider provider, T value) {
+		return provider.setProperty(this, value);
+	}
+
 	public Class<T> getValueType() {
 		return propertyType;
 	}

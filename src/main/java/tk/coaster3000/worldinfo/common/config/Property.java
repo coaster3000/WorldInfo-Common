@@ -29,6 +29,7 @@ public interface Property<T> {
 	Class<T> getValueType();
 	T getValue(SettingsProvider provider);
 	T getValue(SettingsProvider provider, T defValue);
+	boolean setValue(SettingsProvider provider, T value);
 	String getKey();
 
 	String getComment(SettingsProvider provider);
