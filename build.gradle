@@ -102,6 +102,7 @@ license {
     exclude "**/*.info"
     exclude "**/*.json"
     exclude "assets/**"
+    exclude "**/rebel.xml"
     header new File(getProjectDir(), "HEADER.txt")
     sourceSets = project.sourceSets
     ignoreFailures false
