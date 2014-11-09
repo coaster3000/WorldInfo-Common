@@ -42,7 +42,8 @@ public enum Mode {
 		static {
 			Mode[] modes = Mode.values();
 			String[] vals = new String[modes.length];
-			for (int i = 0; i < modes.length; i++) vals[i] = modes[i].name();
+			for (int i = 0; i < modes.length; i++)
+				vals[i] = modes[i].name();
 
 			regex = Pattern.compile(StringUtil.join("|", vals));
 		}

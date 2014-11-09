@@ -26,7 +26,13 @@ package tk.coaster3000.worldinfo.common.data;
 
 import tk.coaster3000.worldinfo.util.Validate;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public abstract class MultiMap<M extends Map<String, Object>> implements IMultiMap<M> {
@@ -83,10 +89,13 @@ public abstract class MultiMap<M extends Map<String, Object>> implements IMultiM
 	}
 
 	public Object get(String path) {
+		Validate.notNullOrEmpty(path, "Path should not be null!");
 		int i = path.lastIndexOf(PATH_SEP);
-		if (i > 0)
-			return getNode(path.substring(0, i)).get(path.substring(i + 1));
-		else return data.get(path);
+		if (i > 0) {
+			MultiMap<M> node = getNode(path.substring(0, i));
+			if (node == null) return null;
+			return node.get(path.substring(i + 1));
+		} else return data.get(path);
 	}
 
 	@SuppressWarnings("unchecked")

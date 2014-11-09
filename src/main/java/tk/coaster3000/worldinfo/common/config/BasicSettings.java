@@ -27,7 +27,11 @@ package tk.coaster3000.worldinfo.common.config;
 import tk.coaster3000.worldinfo.common.data.MultiMap;
 import tk.coaster3000.worldinfo.util.PropertyTypes;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public abstract class BasicSettings<M extends Map<String, Object>> implements SettingsProvider {
 
