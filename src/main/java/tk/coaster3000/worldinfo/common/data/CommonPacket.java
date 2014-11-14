@@ -24,7 +24,7 @@
  */
 package tk.coaster3000.worldinfo.common.data;
 
-public class CommonPacket {
+public class CommonPacket<T extends CommonPlayer> {
 	protected String channel;
 	protected byte id;
 	protected byte[] data;
@@ -55,5 +55,9 @@ public class CommonPacket {
 
 	public int getDataLength() {
 		return data.length;
+	}
+
+	public void send(T player) {
+		player.sendPacket(this);
 	}
 }
