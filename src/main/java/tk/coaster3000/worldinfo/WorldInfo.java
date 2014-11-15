@@ -30,6 +30,8 @@ import tk.coaster3000.worldinfo.common.data.CommonPlayer;
 import tk.coaster3000.worldinfo.common.data.CommonWorld;
 
 public abstract class WorldInfo<PlayerT, PacketT, WorldT> {
+	public final static String PLUGIN_CHANNEL = "world_info";
+
 	public final void loadSettings() {
 		getSettings().load();
 	}
