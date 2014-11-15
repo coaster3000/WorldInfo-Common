@@ -26,10 +26,9 @@ package tk.coaster3000.worldinfo.common.data;
 
 import tk.coaster3000.worldinfo.util.Validate;
 
-import java.io.File;
 import java.util.UUID;
 
-public abstract class CommonWorld {
+public abstract class CommonWorld implements ICommonWorld {
 
 	protected UUID uid;
 	protected String name;
@@ -60,8 +59,6 @@ public abstract class CommonWorld {
 		Validate.notNullOrEmpty(name);
 		this.name = name;
 	}
-
-	public abstract File getWorldFolder();
 
 	public final String getCustomName() {
 		return customName;

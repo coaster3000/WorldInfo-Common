@@ -26,12 +26,7 @@ package tk.coaster3000.worldinfo.common.data;
 
 import java.util.Collection;
 
-public abstract class CommonPlayer<T extends CommonWorld> {
-	public abstract void sendMessage(String message);
-
-	public abstract void sendPacket(CommonPacket packet);
-
-	public abstract T getWorld();
+public abstract class CommonPlayer<T extends ICommonWorld> implements ICommonPlayer<T> {
 
 	public final void sendMessage(String... messages) {
 		for (String msg : messages) sendMessage(msg);
