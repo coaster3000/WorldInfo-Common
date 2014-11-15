@@ -37,37 +37,45 @@ public abstract class BasicSettings<M extends Map<String, Object>> implements Se
 
 	MultiMap<M> data;
 	Set<Property<?>> properties;
+	public static final PropertyTypes.BooleanProperty enabled = new PropertyTypes.BooleanProperty("enabled.mod") {
+		@Override
+		public Boolean getDefaultValue() {
+			return true;
+		}
+	};
+
+	public static final PropertyTypes.BooleanProperty UIDPacketEnabled = new PropertyTypes.BooleanProperty("enabled.packets.uuid") {
+		@Override
+		public Boolean getDefaultValue() {
+			return true;
+		}
+	};
+	public static final PropertyTypes.BooleanProperty worldNamePacketEnabled = new PropertyTypes.BooleanProperty("enabled.packets.worldname") {
+		@Override
+		public Boolean getDefaultValue() {
+			return true;
+		}
+	};
+
+	public static final PropertyTypes.BooleanProperty filePacketEnabled = new PropertyTypes.BooleanProperty("enabled.packets.file") {
+		@Override
+		public Boolean getDefaultValue() {
+			return true;
+		}
+	};
+
+	public static final Mode.ModeProperty primaryMode = new Mode.ModeProperty("primary.mode");
 
 	public BasicSettings(MultiMap<M> baseMap) {
 		this.data = baseMap;
 		this.properties = new HashSet<Property<?>>();
 
 		Collections.addAll(this.properties,
-				new PropertyTypes.BooleanProperty("enabled.mod") {
-					@Override
-					public Boolean getDefaultValue() {
-						return true;
-					}
-				},
-				new PropertyTypes.BooleanProperty("enabled.packets.uuid") {
-					@Override
-					public Boolean getDefaultValue() {
-						return true;
-					}
-				},
-				new PropertyTypes.BooleanProperty("enabled.packets.worldname") {
-					@Override
-					public Boolean getDefaultValue() {
-						return true;
-					}
-				},
-				new PropertyTypes.BooleanProperty("enabled.packets.file") {
-					@Override
-					public Boolean getDefaultValue() {
-						return true;
-					}
-				},
-				new Mode.ModeProperty("primary.mode")
+				enabled,
+				UIDPacketEnabled,
+				worldNamePacketEnabled,
+				filePacketEnabled,
+				primaryMode
 		);
 	}
 
