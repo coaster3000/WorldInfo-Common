@@ -22,37 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package tk.coaster3000.worldinfo.common.config;
+package tk.coaster3000.worldinfo.common.data;
 
-import tk.coaster3000.worldinfo.common.data.IMultiMap;
+public interface ICommonPlayer<T extends ICommonWorld> {
 
-import java.util.Collection;
+	void sendMessage(String message);
 
-public interface SettingsProvider {
-	void save();
-	void load();
+	void sendPacket(CommonPacket packet);
 
-	IMultiMap getData();
-
-	<T> T getProperty(Property<T> property);
-	<T> T getProperty(Property<T> property, T defValue);
-
-	<T> boolean setProperty(Property<T> property, T value);
-
-	<T> boolean isSpecialProperty(Property<T> property);
-
-	<NORM, T> T getSpecialProperty(SpecialProperty<NORM, T> property);
-
-	<NORM, T> T getSpecialProperty(SpecialProperty<NORM, T> property, T defValue);
-
-	<NORM, T> boolean setProperty(SpecialProperty<NORM, T> property, T value);
-
-
-	boolean hasProperty(Property<?> property);
-	boolean addProperty(Property<?> property);
-	boolean removeProperty(Property<?> property);
-
-	boolean supportsComments();
-
-	Collection<Property<?>> getProperties();
+	T getWorld();
 }

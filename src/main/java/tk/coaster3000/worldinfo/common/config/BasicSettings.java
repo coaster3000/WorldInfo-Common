@@ -83,7 +83,7 @@ public abstract class BasicSettings<M extends Map<String, Object>> implements Se
 
 	@Override
 	public <T> T getProperty(Property<T> property, T defValue) {
-		return (T) getData().get(property.getKey(), defValue);
+		return getData().get(property.getKey(), defValue);
 	}
 
 	@Override
@@ -104,6 +104,22 @@ public abstract class BasicSettings<M extends Map<String, Object>> implements Se
 	@Override
 	public boolean removeProperty(Property<?> property) {
 		return properties.remove(property);
+	}
+
+	public <T> boolean isSpecialProperty(Property<T> property) {
+		return property instanceof SpecialProperty;
+	}
+
+	public <NORM, T> T getSpecialProperty(SpecialProperty<NORM, T> property) {
+		return property.getSpecialValue(this);
+	}
+
+	public <NORM, T> T getSpecialProperty(SpecialProperty<NORM, T> property, T defValue) {
+		return property.getSpecialValue(this, defValue);
+	}
+
+	public <NORM, T> boolean setProperty(SpecialProperty<NORM, T> property, T value) {
+		return property.setSpecialValue(this, value);
 	}
 
 	@Override

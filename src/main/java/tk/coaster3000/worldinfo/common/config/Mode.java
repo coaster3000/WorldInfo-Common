@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
 public enum Mode {
 	UUID, File, Name;
 
-	public static class ModeProperty extends PropertyTypes.StringProperty implements PatternValidatedProperty {
+	public static class ModeProperty extends PropertyTypes.StringProperty implements PatternValidatedProperty, SpecialProperty<String, Mode> {
 		public ModeProperty(String key) {
 			super(key);
 		}
@@ -48,40 +48,10 @@ public enum Mode {
 			regex = Pattern.compile(StringUtil.join("|", vals));
 		}
 
-		@Override
 		public String getDefaultValue() {
-			return Mode.UUID.name();
+			return getDefaultSpecialValue().name();
 		}
 
-		public Mode getModeValue() {
-			try {
-				return Mode.valueOf(getValue());
-			} catch (IllegalArgumentException ignored) {
-				return null;
-			}
-		}
-
-		public Mode getModeValue(SettingsProvider provider) {
-			try {
-				return Mode.valueOf(getValue(provider));
-			} catch (IllegalArgumentException ignored) {
-				return null;
-			}
-		}
-
-		public Mode getModeValue(SettingsProvider provider, Mode defValue) {
-			return Mode.valueOf(getValue(provider, defValue.name()));
-		}
-
-		public boolean setValue(Mode mode) {
-			return setValue(mode.name());
-		}
-
-		public boolean setValue(SettingsProvider provider, Mode mode) {
-			return setValue(provider, mode.name());
-		}
-
-		@Override
 		public Pattern getPattern() {
 			return regex;
 		}
@@ -89,6 +59,34 @@ public enum Mode {
 		@Override
 		public String getComment() {
 			return "A world id mode. It may contain either of the following: " + StringUtil.join(",", getPattern().pattern().split("\\|"));
+		}
+
+		public Class<Mode> getSpecialValueType() {
+			return Mode.class;
+		}
+
+		public Mode getSpecialValue(SettingsProvider provider) {
+			try {
+				return Mode.valueOf(getValue(provider));
+			} catch (IllegalArgumentException ignored) {
+				return null;
+			}
+		}
+
+		public Mode getSpecialValue(SettingsProvider provider, Mode defValue) {
+			try {
+				return Mode.valueOf(getValue(provider, defValue.name()));
+			} catch (IllegalArgumentException ignored) {
+				return null;
+			}
+		}
+
+		public boolean setSpecialValue(SettingsProvider provider, Mode value) {
+			return setValue(value.name());
+		}
+
+		public Mode getDefaultSpecialValue() {
+			return Mode.UUID;
 		}
 	}
 }
