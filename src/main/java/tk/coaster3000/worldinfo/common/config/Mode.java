@@ -30,7 +30,7 @@ import tk.coaster3000.worldinfo.util.StringUtil;
 import java.util.regex.Pattern;
 
 public enum Mode {
-	UUID, File, Name;
+	UUID, File, Name, Seed;
 
 	public static class ModeProperty extends PropertyTypes.StringProperty implements PatternValidatedProperty, SpecialProperty<String, Mode> {
 		public ModeProperty(String key) {
@@ -69,9 +69,11 @@ public enum Mode {
 
 		public Mode getSpecialValue(SettingsProvider provider) {
 			try {
-				return Mode.valueOf(getValue(provider));
+				String s = getValue();
+				if (s == null) return getDefaultSpecialValue();
+				return Mode.valueOf(s);
 			} catch (IllegalArgumentException ignored) {
-				return null;
+				return getDefaultSpecialValue();
 			}
 		}
 
@@ -79,7 +81,7 @@ public enum Mode {
 			try {
 				return Mode.valueOf(getValue(provider, defValue.name()));
 			} catch (IllegalArgumentException ignored) {
-				return null;
+				return defValue;
 			}
 		}
 
