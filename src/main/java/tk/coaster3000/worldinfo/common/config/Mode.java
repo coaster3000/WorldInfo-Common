@@ -58,7 +58,9 @@ public enum Mode {
 
 		@Override
 		public String getComment() {
-			return "A world id mode. It may contain either of the following: " + StringUtil.join(",", getPattern().pattern().split("\\|"));
+			return String.format(
+					"A world id mode. It may contain either of the following: %s",
+					StringUtil.join(",", getPattern().pattern().split("\\|")));
 		}
 
 		public Class<Mode> getSpecialValueType() {
