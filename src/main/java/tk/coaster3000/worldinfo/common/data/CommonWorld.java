@@ -103,6 +103,7 @@ public abstract class CommonWorld<PLAYER extends ICommonPlayer<? extends ICommon
 	public CommonWorld(UUID uid, String name) {
 		this.uid = uid;
 		this.name = name;
+		this.customName = this.name;
 	}
 
 	public final UUID getUID() {
