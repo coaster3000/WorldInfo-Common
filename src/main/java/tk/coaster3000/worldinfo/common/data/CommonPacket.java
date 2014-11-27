@@ -24,21 +24,19 @@
  */
 package tk.coaster3000.worldinfo.common.data;
 
-public class CommonPacket<T extends CommonPlayer> {
-	protected String channel;
-	protected byte id;
-	protected byte[] data;
+public abstract class CommonPacket implements ICommonPacket {
+	String channel;
+	byte id;
 
 	/**
 	 * Internal use only please...
 	 */
-	protected CommonPacket() {
+	public CommonPacket() {
 	}
 
-	public CommonPacket(String channel, byte id, byte[] data) {
+	CommonPacket(String channel, byte id) {
 		this.channel = channel;
 		this.id = id;
-		this.data = data.clone();
 	}
 
 	public String getChannel() {
@@ -49,15 +47,11 @@ public class CommonPacket<T extends CommonPlayer> {
 		return id;
 	}
 
-	public byte[] getData() {
-		return data.clone();
+	public void setID(byte id) {
+		this.id = id;
 	}
 
-	public int getDataLength() {
-		return data.length;
-	}
-
-	public void send(T player) {
+	public void send(ICommonPlayer<?> player) {
 		player.sendPacket(this);
 	}
 }

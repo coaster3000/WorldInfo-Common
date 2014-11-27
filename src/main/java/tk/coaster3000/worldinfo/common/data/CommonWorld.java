@@ -24,11 +24,15 @@
  */
 package tk.coaster3000.worldinfo.common.data;
 
-import tk.coaster3000.worldinfo.util.Validate;
-
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.UUID;
 
-public abstract class CommonWorld implements ICommonWorld {
+public abstract class CommonWorld<PLAYER extends ICommonPlayer<? extends ICommonWorld<PLAYER>>> implements ICommonWorld<PLAYER> {
 
 	protected UUID uid;
 	protected String name;
@@ -38,35 +42,80 @@ public abstract class CommonWorld implements ICommonWorld {
 	 * Only implement if needed.
 	 */
 	protected CommonWorld() {
+
 	}
 
-	public CommonWorld(UUID uid, String name, String customName) {
+	public void load() {
+		File uidFile = getUidFile();
+		if (uidFile.exists()) {
+			DataInputStream dis = null;
+			try {
+				dis = new DataInputStream(new FileInputStream(uidFile));
+				uid = new UUID(dis.readLong(), dis.readLong());
+				return;
+			} catch (IOException ex) {
+				handleException(ex);
+			} finally {
+				if (dis != null) {
+					try {
+						dis.close();
+					} catch (IOException ex) {
+						// NOOP
+					}
+				}
+			}
+		}
+		uid = UUID.randomUUID();
+		saveUid();
+	}
+
+	protected void saveUid() {
+		DataOutputStream dos = null;
+		try {
+			dos = new DataOutputStream(new FileOutputStream(getUidFile()));
+			dos.writeLong(uid.getMostSignificantBits());
+			dos.writeLong(uid.getLeastSignificantBits());
+		} catch (IOException ex) {
+			handleException(ex);
+		} finally {
+			if (dos != null) {
+				try {
+					dos.close();
+				} catch (IOException ex) {
+					// NOOP
+				}
+			}
+		}
+	}
+
+	@Override
+	public abstract PLAYER[] getPlayers();
+
+	@Override
+	public abstract boolean hasPlayer(PLAYER player);
+
+	protected abstract void handleException(Exception exception);
+
+	public void save() {
+		saveUid();
+	}
+
+	public CommonWorld(UUID uid, String name) {
 		this.uid = uid;
 		this.name = name;
-		this.customName = customName;
 	}
 
 	public final UUID getUID() {
-		if (uid == null) generateUID();
 		return uid;
 	}
+
+	abstract File getUidFile();
 
 	public final String getName() {
 		return name;
 	}
 
-	protected void setName(String name) {
-		Validate.notNullOrEmpty(name);
-		this.name = name;
-	}
-
 	public final String getCustomName() {
 		return customName;
 	}
-
-	public final void setCustomName(String name) {
-		this.customName = name;
-	}
-
-	protected abstract void generateUID();
 }

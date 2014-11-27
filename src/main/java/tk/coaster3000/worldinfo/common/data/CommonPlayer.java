@@ -26,7 +26,7 @@ package tk.coaster3000.worldinfo.common.data;
 
 import java.util.Collection;
 
-public abstract class CommonPlayer<T extends ICommonWorld> implements ICommonPlayer<T> {
+public abstract class CommonPlayer<WORLD extends CommonWorld<? extends CommonPlayer<WORLD>>> implements ICommonPlayer<WORLD> {
 
 	public final void sendMessage(String... messages) {
 		for (String msg : messages) sendMessage(msg);
@@ -34,5 +34,9 @@ public abstract class CommonPlayer<T extends ICommonWorld> implements ICommonPla
 
 	public final void sendMessages(Collection<String> messages) {
 		for (String msg : messages) sendMessage(msg);
+	}
+
+	public boolean hasPermission(String node) {
+		return true;
 	}
 }

@@ -24,11 +24,21 @@
  */
 package tk.coaster3000.worldinfo.common.data;
 
-public interface ICommonPlayer<T extends ICommonWorld> {
+import java.util.UUID;
+
+public interface ICommonPlayer<WORLD extends ICommonWorld<? extends ICommonPlayer<WORLD>>> {
+
+	String getName();
+
+	UUID getUID();
 
 	void sendMessage(String message);
 
-	void sendPacket(CommonPacket packet);
+	void sendPacket(ICommonPacket packet);
 
-	T getWorld();
+	WORLD getWorld();
+
+	boolean hasPermission(String node);
+
+	boolean isOperator();
 }

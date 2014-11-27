@@ -25,12 +25,16 @@
 package tk.coaster3000.worldinfo;
 
 import tk.coaster3000.worldinfo.common.config.SettingsProvider;
-import tk.coaster3000.worldinfo.common.data.CommonPacket;
-import tk.coaster3000.worldinfo.common.data.CommonPlayer;
-import tk.coaster3000.worldinfo.common.data.CommonWorld;
+import tk.coaster3000.worldinfo.common.data.ICommonPacket;
+import tk.coaster3000.worldinfo.common.data.ICommonPlayer;
+import tk.coaster3000.worldinfo.common.data.ICommonWorld;
 
-public abstract class WorldInfo<PlayerT, PacketT, WorldT> {
-	public final static String PLUGIN_CHANNEL = "world_info";
+public abstract class WorldInfo<
+		REQ_PLAYER_TYPE, REQ_PACKET_TYPE, REQ_WORLD_TYPE,
+		RET_PLAYER extends ICommonPlayer<RET_WORLD>,
+		RET_PACKET extends ICommonPacket,
+		RET_WORLD extends ICommonWorld<RET_PLAYER>> {
+	public static final String PLUGIN_CHANNEL = "world_info";
 
 	public final void loadSettings() {
 		getSettings().load();
@@ -42,9 +46,9 @@ public abstract class WorldInfo<PlayerT, PacketT, WorldT> {
 		getSettings().save();
 	}
 
-	public abstract CommonPacket wrapPacket(PacketT packet);
+	public abstract RET_PACKET wrapPacket(REQ_PACKET_TYPE packet);
 
-	public abstract CommonPlayer<? extends CommonWorld> wrapPlayer(PlayerT player);
+	public abstract RET_PLAYER wrapPlayer(REQ_PLAYER_TYPE player);
 
-	public abstract CommonWorld wrapWorld(WorldT world);
+	public abstract RET_WORLD wrapWorld(REQ_WORLD_TYPE world);
 }

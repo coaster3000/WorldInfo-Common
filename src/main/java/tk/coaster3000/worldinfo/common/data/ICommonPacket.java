@@ -24,21 +24,13 @@
  */
 package tk.coaster3000.worldinfo.common.data;
 
-import java.io.File;
-import java.util.UUID;
+public interface ICommonPacket {
 
-public interface ICommonWorld<PLAYER extends ICommonPlayer<? extends ICommonWorld<PLAYER>>> {
-	UUID getUID();
+	String getChannel();
 
-	String getName();
+	byte getId();
 
-	File getWorldFolder();
+	byte[] getData();
 
-	String getCustomName();
-
-	long getSeed();
-
-	PLAYER[] getPlayers();
-
-	boolean hasPlayer(PLAYER player);
+	void send(ICommonPlayer<?> player);
 }
