@@ -174,6 +174,7 @@ public abstract class MultiMap<M extends Map<String, Object>> implements IMultiM
 		return keys;
 	}
 
+	@SuppressWarnings("unchecked")
 	private Set<String> getKeys(String prefix) {
 		Set<String> keys = new LinkedHashSet<String>();
 
@@ -223,7 +224,7 @@ public abstract class MultiMap<M extends Map<String, Object>> implements IMultiM
 		for (Iterator<Map.Entry<String, Object>> iter = data.entrySet().iterator(); iter.hasNext(); ) {
 			Map.Entry<String, Object> entry = iter.next();
 			if (entry.getValue() instanceof MultiMap) {
-				((MultiMap) entry.getValue()).reset();
+				((MultiMap<?>) entry.getValue()).reset();
 			}
 			iter.remove();
 		}

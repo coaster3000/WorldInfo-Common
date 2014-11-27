@@ -32,7 +32,7 @@ public interface SettingsProvider {
 	void save();
 	void load();
 
-	IMultiMap getData();
+	IMultiMap<?> getData();
 
 	<T> T getProperty(Property<T> property);
 	<T> T getProperty(Property<T> property, T defValue);
