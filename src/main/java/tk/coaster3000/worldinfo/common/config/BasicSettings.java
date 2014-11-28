@@ -24,6 +24,7 @@
  */
 package tk.coaster3000.worldinfo.common.config;
 
+import tk.coaster3000.worldinfo.common.config.properties.BaseProperty;
 import tk.coaster3000.worldinfo.common.data.MultiMap;
 import tk.coaster3000.worldinfo.util.PropertyTypes;
 
@@ -93,6 +94,8 @@ public abstract class BasicSettings<M extends Map<String, Object>> implements Se
 
 	@Override
 	public <T> T getProperty(Property<T> property) {
+		if (property instanceof BaseProperty)
+			return getData().get(((BaseProperty) property).getPath() + "." + property.getKey(), property.getValueType());
 		return getData().get(property.getKey(), property.getValueType());
 	}
 

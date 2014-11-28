@@ -54,7 +54,7 @@ public abstract class MultiMap<M extends Map<String, Object>> implements IMultiM
 		Validate.notNull(name);
 		this.parent = parent;
 		this.name = name;
-		this.path = parent != null ? parent.getPath() + PATH_SEP + name : name;
+		this.path = parent != null ? parent.getPath().isEmpty() ? name : parent.getPath() + PATH_SEP + name : name;
 		data = getRoot().craftDataHolder();
 	}
 
@@ -90,7 +90,7 @@ public abstract class MultiMap<M extends Map<String, Object>> implements IMultiM
 
 	public Object get(String path) {
 		Validate.notNullOrEmpty(path, "Path should not be null!");
-		int i = path.lastIndexOf(PATH_SEP);
+		int i = path.indexOf(PATH_SEP);
 		if (i > 0) {
 			MultiMap<M> node = getNode(path.substring(0, i));
 			if (node == null) return null;
@@ -128,7 +128,7 @@ public abstract class MultiMap<M extends Map<String, Object>> implements IMultiM
 
 				node = this;
 				while (paths.peek() != null) {
-					node = createNode(paths.poll());
+					node = node.createNode(paths.poll());
 				}
 			} else {
 				node = new MultiMap<M>(this, path) {
