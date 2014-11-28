@@ -34,6 +34,9 @@ public abstract class WorldInfo<
 		RET_PLAYER extends ICommonPlayer<RET_WORLD>,
 		RET_PACKET extends ICommonPacket,
 		RET_WORLD extends ICommonWorld<RET_PLAYER>> {
+
+	public static final double apiVersion = 1.0;
+
 	public static final String PLUGIN_CHANNEL = "world_info";
 
 	public final void loadSettings() {
@@ -45,6 +48,7 @@ public abstract class WorldInfo<
 	public final void saveSettings() {
 		getSettings().save();
 	}
+
 
 	public abstract RET_PACKET wrapPacket(REQ_PACKET_TYPE packet);
 
