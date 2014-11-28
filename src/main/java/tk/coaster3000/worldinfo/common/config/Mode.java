@@ -30,7 +30,7 @@ import tk.coaster3000.worldinfo.util.StringUtil;
 import java.util.regex.Pattern;
 
 public enum Mode {
-	UUID, File, Name, Seed;
+	UUID, CustomName, Name, Seed;
 
 	public static class ModeProperty extends PropertyTypes.StringProperty implements PatternValidatedProperty, SpecialProperty<String, Mode> {
 		public ModeProperty(String key) {

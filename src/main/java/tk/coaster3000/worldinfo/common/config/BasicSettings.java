@@ -56,8 +56,14 @@ public abstract class BasicSettings<M extends Map<String, Object>> implements Se
 			return true;
 		}
 	};
+	public static final PropertyTypes.BooleanProperty seedPacketEnabled = new PropertyTypes.BooleanProperty("enabled.packets.seed") {
+		@Override
+		public Boolean getDefaultValue() {
+			return true;
+		}
+	};
 
-	public static final PropertyTypes.BooleanProperty filePacketEnabled = new PropertyTypes.BooleanProperty("enabled.packets.file") {
+	public static final PropertyTypes.BooleanProperty customNamePacketEnabled = new PropertyTypes.BooleanProperty("enabled.packets.customname") {
 		@Override
 		public Boolean getDefaultValue() {
 			return true;
@@ -74,7 +80,8 @@ public abstract class BasicSettings<M extends Map<String, Object>> implements Se
 				enabled,
 				UIDPacketEnabled,
 				worldNamePacketEnabled,
-				filePacketEnabled,
+				customNamePacketEnabled,
+				seedPacketEnabled,
 				primaryMode
 		);
 	}
